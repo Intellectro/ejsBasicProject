@@ -1,0 +1,41 @@
+<%- include('sections/header.ejs') %>
+<div class="w-screen h-screen">
+    <div class="w-full h-full flex items-center justify-center">
+        <div class="w-[60%] py-15 shadow-lg">
+            <div class="flex flex-col gap-y-10 px-6">
+                <div class="text-[25px] uppercase text-center font-[550]">
+                    <%= title %>
+                </div>
+                <div class="flex flex-col gap-y-3">
+                    <div class="flex">
+                        <div class="w-[85%]">
+                            <input
+                                data-id="product-input"
+                                type="text"
+                                class="w-full py-3 px-2 border border-black"
+                                placeholder="Iphone 16 pro max..." />
+                        </div>
+                        <div class="w-[15%]">
+                            <button
+                                data-id="add-product"
+                                class="w-full text-center py-3 cursor-pointer text-slate-100 bg-red-500">
+                                Add product
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-y-5">
+                    <div class="flex item-center">
+                        <div class="flex-[0.5] w-full text-[15.5px] font-[550]">Product Name</div>
+                        <div class="flex-[0.3] w-full text-center text-[15.5px] font-[550]">Date</div>
+                        <div class="flex-[0.2] w-full text-[15.5px] font-[550] text-right">Actions</div>
+                    </div>
+                    <div class="flex flex-col gap-y-1">
+                        <%- include("sections/list.ejs", {items}) %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('sections/footer.ejs') %>

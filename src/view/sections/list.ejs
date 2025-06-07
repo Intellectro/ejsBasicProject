@@ -1,0 +1,10 @@
+<% items.forEach(item => { %>
+    <div class="flex item-center">
+        <div class="flex-[0.5] w-full text-[15.5px]"><%= item.productName %></div>
+        <div class="flex-[0.3] text-center w-full text-[15.5px]"><%= new Date(`${item.inputDate}`).toLocaleDateString("default", {month: "short", day: "2-digit"}) + ", " + new Date(`${item.inputDate}`).getFullYear(); %></div>
+        <div class="flex-[0.2] w-full text-[15.5px] flex justify-end items-center gap-x-2">
+            <i data-id="edit-btn" data-uid="<%= item._id %>" class="fas fa-edit text-green-500"></i>
+            <i data-id="delete-btn" data-uid="<%= item._id %>" class="fas fa-trash text-red-500"></i>
+        </div>
+    </div>
+<% }) %>
