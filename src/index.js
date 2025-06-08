@@ -51,6 +51,36 @@ app.post("/api/products", async (req, res) => {
     }
 });
 
+app.patch("/api/products/:id", async (req, res) => {
+    const {params: {id}, body: {productName}} = req;
+    try {
+        const product = await ProductModel.findById(id);
+        if (!product) {
+            res.status(404).json({error: true, message: "Invalid Product Id"});
+            return;
+        }
+        await ProductModel.updateOne({_id: id}, {$set: {productName}});
+        res.status(201).json({error: false, message: `Product With An Id ${id} Updated Successfully`});
+    }catch(err) {
+        logger.error("Error Occurred While Trying To Update Table, Error Message: " + err?.message + " User ID: " + id);
+    }
+});
+
+app.delete("/api/products/:id", async (req, res) => {
+    const {params: {id}} = req;
+    try {
+        const product = await ProductModel.findById(id);
+        if (!product) {
+            res.status(404).json({error: true, message: "Invalid Product Id"});
+            return;
+        }
+        await ProductModel.findByIdAndDelete(id);
+        res.status(201).json({error: false, message: `Product With An Id ${id} Deleted Successfully`})
+    }catch(err) {
+        logger.error("Error Occurred While Trying To Update Table, Error Message: " + err?.message + " User ID: " + id);
+    }
+})
+
 dbConnection().then(() => {
     dbCleanOff();
     const server = app.listen(PORT, () => { 
